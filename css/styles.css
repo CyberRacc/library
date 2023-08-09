@@ -12,7 +12,7 @@ body {
 .main {
     display: grid;
     grid-template-columns: 1fr 6fr;
-    grid-template-rows: 1fr 8fr;
+    grid-template-rows: minmax(200px, 1fr) 8fr;
 }
 
 #header {
@@ -22,6 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     grid-column: 2 / 3;
+    overflow-y: auto;
 }
 
 #sidebar {
@@ -32,6 +33,7 @@ body {
     display: grid;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
 }
 
 #bookshelf {
@@ -41,8 +43,10 @@ body {
 
 .shelf{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 200px);
-    grid-template-rows: repeat(auto-fit, 140px);
+    grid-template-columns: repeat(auto-fit, 140px);
+    grid-template-rows: repeat(auto-fit, 100%);
+    row-gap: 32px;
+    column-gap: 16px;
 }
 
 .book {
