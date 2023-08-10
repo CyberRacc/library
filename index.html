@@ -29,14 +29,15 @@
             <dialog id="add-book-modal">
                 <div id="add-book-container">
                     <form id="add-book-form">
-                        <input type="text" name="title" placeholder="Enter book title">
-                        <input type="text" name="author" placeholder="Enter book author">
+                        <input type="text" name="title" placeholder="Enter book title" required>
+                        <input type="text" name="author" placeholder="Enter book author" required>
                         <input type="number" name="pages" placeholder="Enter number of pages">
+                        <input type="url" name="book-cover-img" id="book-cover-img" placeholder="Book Cover (URL)">
                         <select name="read-status" id="read-status">
+                            <option value="unread" selected>Unread</option>
                             <option value="read">Read</option>
-                            <option value="unread">Unread</option>
                         </select>
-                        <button type="submit" id="add-book">Add Book</button>
+                        <button type="submit" id="btn-add-book">Add Book</button>
                     </form>
                 </div>
             </dialog>
