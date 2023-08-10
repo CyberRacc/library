@@ -14,28 +14,50 @@
                     <h1>CyberRacc Library</h1>
                 </div>
             </header>
+
             <div id="sidebar">
+                <div>
+                    <nav>
+                        <ul>
+                            <li><a href="">Home</a></li>
+                            <li><a href="">Library</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <dialog id="add-book-modal">
                 <div id="add-book-container">
                     <form id="add-book-form">
                         <input type="text" name="title" placeholder="Enter book title">
                         <input type="text" name="author" placeholder="Enter book author">
                         <input type="number" name="pages" placeholder="Enter number of pages">
-                        <input type="text" name="read" placeholder="Enter read status">
+                        <select name="read-status" id="read-status">
+                            <option value="read">Read</option>
+                            <option value="unread">Unread</option>
+                        </select>
                         <button type="submit" id="add-book">Add Book</button>
                     </form>
                 </div>
-            </div>
+            </dialog>
 
-            <div id="bookshelf">
-                <div class="shelf">
-                    <div class="book">
-                        <p>book 1</p>
-                    </div>
-                    <div class="book">
-                        <p>book 2</p>
-                    </div>
-                    <div class="book">
-                        <p>book 3</p>
+            <div id="dashboard">
+                <div id="actions">
+                    <button class="action-button" id="btn-new-book">New Book</button>
+                    <button class="action-button" id="btn-del-book">Delete Book</button>
+                    <button class="action-button" id="btn-edit-book">Edit Book</button>
+                </div>
+                <div id="bookshelf">
+                    <div class="shelf">
+                        <div class="book">
+                            <p>book 1</p>
+                        </div>
+                        <div class="book">
+                            <p>book 2</p>
+                        </div>
+                        <div class="book">
+                            <p>book 3</p>
+                        </div>
                     </div>
                 </div>
             </div>
