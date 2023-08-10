@@ -1,9 +1,8 @@
+console.log("Script loaded.")
 
-
-// Place to store books.
 let myLibrary = [];
 
-const createBookButton = document.querySelector("#create-book");
+const createBookButton = document.querySelector("add-book");
 const shelf = document.querySelector(".shelf");
 
 
@@ -22,12 +21,39 @@ function Book(title, author, pages, read) {
 // const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "unread");
 // console.log(theHobbit.bookInfo());
 
+function displayLibrary(title, author, pages, read) {
+    myLibrary.forEach(book => {
+        const newBook = document.createElement("div");
+        const bookTitle = document.createElement("p");
+        const bookAuthor = document.createElement("p");
+        const bookPages = document.createElement("p");
+        const bookRead = document.createElement("p");
+        bookTitle.textContent = `${title}`;
+        bookAuthor.textContent = `${author}`;
+        bookPages.textContent = `${pages}`;
+        bookRead.textContent = `${read}`;
+        newBook.classList.add("book");
+        shelf.appendChild(newBook);
+        newBook.appendChild(bookTitle);
+    });
+}
 
-createBookButton.addEventListener("click", e => {
-    const newBook = document.createElement("div");
-    const bookTitle = document.createElement("p");
-    bookTitle.textContent = "a new book";
-    newBook.classList.add("book");
-    shelf.appendChild(newBook);
-    newBook.appendChild(bookTitle);
-});
+const form = document.querySelector('#add-book-form');
+
+function addBookToLibrary() {
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        console.log(e);
+        
+        const title = form.elements['title'].value;
+        const author = form.elements['author'].value;
+        const pages = form.elements['pages'].value;
+        const read = form.elements['read'].value;
+
+        const newBook = new Book(title, author, pages, read);
+        myLibrary.push(newBook);
+        
+        displayLibrary(title, author, pages, read);
+    });
+}

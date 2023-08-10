@@ -15,7 +15,7 @@ body {
     grid-template-rows: minmax(100px, 200px) 8fr;
 }
 
-#header {
+header {
     background-color: darkslateblue;
     color: white;
     display: grid;
@@ -34,6 +34,27 @@ body {
     justify-content: center;
     align-items: center;
     overflow-y: auto;
+}
+
+#add-book-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 32px;
+}
+
+#add-book-form input {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 32px;
+}
+
+#add-book-form button {
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    border-radius: 12px;
 }
 
 #bookshelf {

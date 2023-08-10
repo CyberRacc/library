@@ -9,14 +9,20 @@
     </head>
     <body>
         <div class="main">
-            <div id="header">
+            <header>
                 <div id="logo">
                     <h1>CyberRacc Library</h1>
                 </div>
-            </div>
+            </header>
             <div id="sidebar">
-                <div id="actions">
-                    <button id="create-book">Create Book</button>
+                <div id="add-book-container">
+                    <form id="add-book-form">
+                        <input type="text" name="title" placeholder="Enter book title">
+                        <input type="text" name="author" placeholder="Enter book author">
+                        <input type="number" name="pages" placeholder="Enter number of pages">
+                        <input type="text" name="read" placeholder="Enter read status">
+                        <button type="submit" id="add-book">Add Book</button>
+                    </form>
                 </div>
             </div>
 
