@@ -17,8 +17,8 @@ body {
 
 .main {
     display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-template-rows: minmax(100px, 200px) 8fr;
+    grid-template-columns: 200px 6fr;
+    grid-template-rows: 100px 1fr;
 }
 
 header {
@@ -108,13 +108,35 @@ header {
 }
 
 .book {
-    width: 140px;
-    height: 200px;
-    background-color: beige;
-    align-items: center;
-    justify-items: center;
-    border-radius: 4px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 4fr 1fr;
+    height: 250px;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.book-cover {
+    background-color: beige;
+    width: 140px;
+    height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.book-cover img {
+    width: 140px;
+    height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.book-info {
+    text-align: center;
+    color: white;
+    background-color: rgb(78, 78, 78);
+    width: 140px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

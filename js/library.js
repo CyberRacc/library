@@ -38,7 +38,7 @@ function displayLibrary() {
 
         bookTitle.textContent = book.title;
         bookAuthor.textContent = book.author;
-        bookPages.textContent = book.pages + "pages";
+        bookPages.textContent = book.pages + " pages";
         bookRead.textContent = book.read;
 
         newBook.classList.add("book");
