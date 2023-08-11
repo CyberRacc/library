@@ -8,6 +8,8 @@
     --sidebar-button-hover: rgb(189, 112, 189);
     --global-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
     --border-radius: 50px;
+    --grey-background: rgb(117, 117, 117);
+    --header-background-colour: rgb(109, 48, 167);
 }
 
 body {
@@ -17,26 +19,12 @@ body {
 
 .main {
     display: grid;
-    grid-template-columns: 200px 6fr;
     grid-template-rows: 100px 1fr;
 }
 
 header {
-    background-color: darkslateblue;
+    background-color: var(--header-background-colour);
     color: white;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-column: 2 / 3;
-    overflow-y: auto;
-    box-shadow: var(--global-box-shadow);
-}
-
-#sidebar {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-    background-color: palevioletred;
-    height: 100vh;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -61,6 +49,7 @@ header {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 32px;
+    font-size: 1rem;
 }
 
 #add-book-form input {
@@ -68,78 +57,110 @@ header {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 32px;
+    border-radius: 8px;
+    width: 100%;
+    padding: 12px 0;
+    margin: 0;
+    font-size: 1rem;
 }
 
 #add-book-form button {
-    background-color: black;
+    background-color: var(--header-background-colour);
     color: white;
     border: none;
     border-radius: 12px;
+    padding: 12px;
+    width: 100%;
 }
 
 #add-book-form button[type="button"] {
-    background-color: red;
+    background-color: rgb(223, 70, 70);
+    margin-top: 8px;
 }
 
 #dashboard {
-    background-color: grey;
     display: grid;
+    background-color: var(--grey-background);
     grid-template-columns: 1fr;
     grid-template-rows: 50px 1fr;
     overflow-y: scroll;
-    height: calc(100vh - 100px); /* 100px is the height of your header */
+    height: calc(100vh - 100px); /* 100px is the height of the header */
 }
 
 #actions {
-    padding: 16px;
-    justify-self: right;
-    align-self: center;
+    justify-self: center;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    margin: 16px;
 }
 
 #bookshelf {
-    padding: 32px;
+    padding: 1.2rem;
 }
 
 dialog {
+    background-color: white;
     border: none;
     border-radius: 12px;
     padding: 32px;
     box-shadow: var(--global-box-shadow);
 }
 
-input {
-    border-radius: 4px;
-    padding: 8px;
-    box-shadow: inset 1px 1px 2.5px 0px rgba(0, 0, 0, 0.3);
-    width: 100%;
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.726);
 }
 
 select {
-    border: none;
-    border-radius: 4px;
-    padding: 8px;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 12px;
     width: 100%;
+    background-color: transparent;
+    font-size: 1rem;
 }
 
-.form-input {
-    width: 100%;
+.btn-toggle-read {
+    
+}
+
+.btn-toggle-read img {
+    width: 32px;
+    height: auto;
+    align-self: center;
+    justify-self: center;
+}
+
+.btn-toggle-read button{
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+}
+
+.btn-toggle-read button:hover {
+    background-color: rgba(128, 128, 128, 0.438);
+}
+
+.btn-toggle-read button:active {
+    background-color: rgba(153, 153, 153, 0.411);
 }
 
 .action-button {
     color: white;
-    background-color: royalblue;
-    padding: 8px;
+    background-color: rgb(84, 52, 126);
+    padding: 12px 0;
     border-radius: 8px;
     border: none;
-    width: 100px;
+    width: 120px;
+    box-shadow: var(--global-box-shadow);
 }
 
 .action-button:hover {
-    background-color: rgb(105, 136, 230);
+    background-color: rgb(109, 48, 167);
 }
 
 .action-button:active {
-    background-color: rgb(39, 61, 129);
+    background-color: rgb(73, 32, 112);
     box-shadow: inset 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
 
 }
@@ -179,10 +200,21 @@ select {
 .book-info {
     text-align: center;
     color: white;
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(53, 53, 53);
     width: 140px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+input[type="number"] {
+    appearance: textfield;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid black;
 }
 
 @media screen and (max-width: 768px) {
@@ -201,14 +233,6 @@ select {
 
     .shelf {
         justify-content: center;
-        align-content: center;
-    }
-
-    #actions {
-        justify-self: center;
-        justify-content: space-around;
-        align-self: center;
-        align-items: center;
         align-content: center;
     }
 }

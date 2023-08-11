@@ -34,6 +34,16 @@ function displayLibrary() {
         const bookPages = document.createElement("p");
         const bookRead = document.createElement("p");
 
+        const bookToggleRead = document.createElement("div");
+
+        if (book.read == "read") {
+            bookToggleRead.innerHTML = `<button><img src="assets/icons/book-read.svg" alt=""></button>`
+        } else {
+            bookToggleRead.innerHTML = `<button><img src="assets/icons/book-unread.svg" alt=""></button>`
+        }
+
+        bookToggleRead.classList.add("btn-toggle-read")
+
         bookTitle.textContent = book.title;
         bookAuthor.textContent = book.author;
         bookPages.textContent = book.pages + " pages";
@@ -47,14 +57,12 @@ function displayLibrary() {
 
         newBook.appendChild(bookCover);
         newBook.appendChild(bookInfo);
-
-
         shelf.appendChild(newBook);
 
         bookInfo.appendChild(bookTitle);
         bookInfo.appendChild(bookAuthor);
         bookInfo.appendChild(bookPages);
-        bookInfo.appendChild(bookRead)
+        bookInfo.appendChild(bookToggleRead);
     });
 }
 
