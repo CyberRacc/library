@@ -29,15 +29,33 @@
             <dialog id="add-book-modal">
                 <div id="add-book-container">
                     <form id="add-book-form">
-                        <input type="text" name="title" placeholder="Enter book title" required>
-                        <input type="text" name="author" placeholder="Enter book author" required>
-                        <input type="number" name="pages" placeholder="Enter number of pages">
-                        <input type="url" name="book-cover-img" id="book-cover-img" placeholder="Book Cover (URL)">
-                        <select name="read-status" id="read-status">
-                            <option value="unread" selected>Unread</option>
-                            <option value="read">Read</option>
-                        </select>
-                        <button type="submit" id="btn-add-book">Add Book</button>
+                        <div class="form-input">
+                            <label for="title">Book Title</label>
+                            <input type="text" name="title" placeholder="Enter book title" required>
+                        </div>
+                        <div class="form-input">
+                            <label for="author">Book author</label>
+                            <input type="text" name="author" placeholder="Enter book author" required>
+                        </div>
+                        <div class="form-input">
+                            <label for="pages">Page Count</label>
+                            <input type="number" name="pages" placeholder="Enter number of pages">
+                        </div>
+                        <div class="form-input">
+                            <label for="cover">Book Cover Art</label>
+                            <input type="url" name="cover" id="book-cover-img" placeholder="Book Cover (URL)">
+                        </div>
+                        <div class="form-input" id="read-status-container">
+                            <label for="read-status">Have you read this?</label>
+                            <select name="read-status" id="read-status">
+                                <option value="unread" selected>Unread</option>
+                                <option value="read">Read</option>
+                            </select>
+                        </div>
+                        <div class="form-input">
+                            <button type="submit" id="btn-add-book">Add Book</button>
+                            <button type="button" id="btn-cancel-form">Cancel</button>
+                        </div>
                     </form>
                 </div>
             </dialog>
@@ -46,43 +64,10 @@
                 <div id="actions">
                     <button class="action-button" id="btn-new-book">New Book</button>
                     <button class="action-button" id="btn-del-book">Delete Book</button>
-                    <button class="action-button" id="btn-edit-book">Edit Book</button>
                 </div>
                 <div id="bookshelf">
                     <div class="shelf">
-                        <div class="book">
-                            <div class="book-cover">
-                                <img src="https://dauntbooks.co.uk/wp-content/uploads/2021/09/9780261103344.jpg" alt="">
-                            </div>
-                            <div class="book-info">
-                                <p>Test Book 1</p>
-                                <p>Test Author</p>
-                                <p>32 Pages</p>
-                                <p>Read</p>
-                            </div>
-                        </div>
-                        <div class="book">
-                            <div class="book-cover">
-                                <img src="https://dauntbooks.co.uk/wp-content/uploads/2021/09/9780261103344.jpg" alt="">
-                            </div>
-                            <div class="book-info">
-                                <p>Test Book 2</p>
-                                <p>Test Author</p>
-                                <p>400 Pages</p>
-                                <p>Unread</p>
-                            </div>
-                        </div>
-                        <div class="book">
-                            <div class="book-cover">
-                                <img src="https://dauntbooks.co.uk/wp-content/uploads/2021/09/9780261103344.jpg" alt="">
-                            </div>
-                            <div class="book-info">
-                                <p>Test Book 3</p>
-                                <p>Test Author</p>
-                                <p>2303 Pages</p>
-                                <p>Read</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
