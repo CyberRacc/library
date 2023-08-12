@@ -20,6 +20,9 @@ function Book(title, author, pages, cover, read) {
 
 function displayLibrary() {
 
+    const btnDeleteBook = document.createElement("button");
+
+
     myLibrary.forEach((book, index)  => {
 
         const newBook = document.createElement("div");
