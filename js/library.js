@@ -1,13 +1,6 @@
 
-let myLibrary = [];
-
-const addBookModal = document.querySelector("#add-book-modal");
-const btnCancelForm = document.querySelector("#btn-cancel-form");
-const btnNewBook = document.querySelector("#btn-new-book");
-const createBookButton = document.querySelector("#add-book");
+let myLibrary = []; // Array to store new book objects.
 const shelf = document.querySelector(".shelf");
-const bookCover = document.querySelector(".book-cover");
-const bookInfo = document.querySelector(".book-info");
 
 // Object constructor that stores information on books that are added.
 function Book(title, author, pages, cover, read) {
@@ -23,26 +16,28 @@ function Book(title, author, pages, cover, read) {
 }
 
 function displayLibrary() {
-    myLibrary.forEach(book => {
-        const newBook = document.createElement("div");
 
+    myLibrary.forEach(book => {
+
+        const newBook = document.createElement("div");
         const bookInfo = document.createElement("div");
         const bookCover = document.createElement("div");
-
         const bookTitle = document.createElement("p");
         const bookAuthor = document.createElement("p");
         const bookPages = document.createElement("p");
         const bookRead = document.createElement("p");
-
         const bookToggleRead = document.createElement("div");
 
         if (book.read == "read") {
-            bookToggleRead.innerHTML = `<button><img src="assets/icons/book-read.svg" alt=""></button>`
+            bookToggleRead.innerHTML = `<button class="btn-toggle-read"><img src="assets/icons/book-read.svg" alt=""></button>`
         } else {
-            bookToggleRead.innerHTML = `<button><img src="assets/icons/book-unread.svg" alt=""></button>`
+            bookToggleRead.innerHTML = `<button class="btn-toggle-read"><img src="assets/icons/book-unread.svg" alt=""></button>`
         }
 
-        bookToggleRead.classList.add("btn-toggle-read")
+        bookToggleRead.addEventListener('click', function(event) {
+            toggleReadStatus(book, event);
+        });
+        
 
         bookTitle.textContent = book.title;
         bookAuthor.textContent = book.author;
@@ -54,21 +49,32 @@ function displayLibrary() {
         newBook.classList.add("book");
         bookInfo.classList.add("book-info");
         bookCover.classList.add("book-cover");
+        bookToggleRead.classList.add("div-toggle-read")
 
         newBook.appendChild(bookCover);
         newBook.appendChild(bookInfo);
+
         shelf.appendChild(newBook);
 
         bookInfo.appendChild(bookTitle);
         bookInfo.appendChild(bookAuthor);
         bookInfo.appendChild(bookPages);
         bookInfo.appendChild(bookToggleRead);
+
+        const btnToggleReadStatus = bookToggleRead.querySelector(".btn-toggle-read");
+        btnToggleReadStatus.addEventListener("click", e => {
+            toggleReadStatus(book, e);
+        });
+        
     });
 }
 
-const form = document.querySelector('#add-book-form');
-
 function addBookToLibrary() {
+
+    const btnNewBook = document.querySelector("#btn-new-book");
+    const btnCancelForm = document.querySelector("#btn-cancel-form");
+    const addBookModal = document.querySelector("#add-book-modal");
+    const form = document.querySelector('#add-book-form');
 
     btnNewBook.addEventListener("click", () => {
         addBookModal.showModal();
@@ -114,6 +120,21 @@ function addDefaultBooks() {
     myLibrary.push(prideAndPrejudice, toKillAMockingbird, nineteenEightyFour, theGreatGatsby, oneHundredYearsOfSolitude, braveNewWorld, mobyDick, warAndPeace, theHobbit);
 
     displayLibrary();
+}
+
+function toggleReadStatus(book, e) {
+    if (book.read == "unread") {
+        book.read = "read";
+    } else {
+        book.read = "unread";
+    }
+
+    // Update display.
+    if (book.read == "read") {
+        e.target.innerHTML = `<img src="assets/icons/book-read.svg" alt="">`;
+    } else {
+        e.target.innerHTML = `<img src="assets/icons/book-unread.svg" alt="">`;
+    }
 }
 
 addDefaultBooks();

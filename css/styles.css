@@ -26,10 +26,32 @@ header {
     background-color: var(--header-background-colour);
     color: white;
     display: grid;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     overflow-y: auto;
     box-shadow: var(--global-box-shadow);
+}
+
+#logo {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+    padding-left: 16px;
+}
+
+#logo h1 {
+    padding: 0;
+    margin: 0;
+    width: 260px;
+    justify-self: start;
+}
+
+#logo img {
+    border-radius: 50%;
+    width: 65px;
+    height: auto;
 }
 
 #btn-add-book {
@@ -71,11 +93,30 @@ header {
     border-radius: 12px;
     padding: 12px;
     width: 100%;
+    box-shadow: var(--global-box-shadow);
 }
 
 #add-book-form button[type="button"] {
     background-color: rgb(223, 70, 70);
     margin-top: 8px;
+}
+
+#add-book-form button:hover {
+    background-color: rgb(131, 77, 181);
+}
+
+#add-book-form button[type="button"]:hover {
+    background-color: rgb(240, 97, 97);
+}
+
+#add-book-form button:active {
+    background-color: rgb(73, 32, 112);
+    box-shadow: inset var(--global-box-shadow);
+}
+
+#add-book-form button[type="button"]:active {
+    background-color: rgb(104, 60, 60);
+    box-shadow: inset var(--global-box-shadow);
 }
 
 #dashboard {
@@ -97,6 +138,7 @@ header {
 
 #bookshelf {
     padding: 1.2rem;
+    padding-top: 32px;
 }
 
 dialog {
@@ -120,28 +162,24 @@ select {
     font-size: 1rem;
 }
 
-.btn-toggle-read {
-    
-}
-
-.btn-toggle-read img {
+.div-toggle-read img {
     width: 32px;
     height: auto;
     align-self: center;
     justify-self: center;
 }
 
-.btn-toggle-read button{
+.btn-toggle-read {
     background-color: transparent;
     border: none;
     border-radius: 50%;
 }
 
-.btn-toggle-read button:hover {
+.div-toggle-read button:hover {
     background-color: rgba(128, 128, 128, 0.438);
 }
 
-.btn-toggle-read button:active {
+.div-toggle-read button:active {
     background-color: rgba(153, 153, 153, 0.411);
 }
 
@@ -218,9 +256,11 @@ input {
 }
 
 @media screen and (max-width: 768px) {
-    #sidebar {
-        display: none;
+
+    #logo {
+        justify-content: center;
     }
+
     #dashboard {
         width: 100vw;
         grid-template-rows: 50px 1fr;
@@ -228,7 +268,7 @@ input {
 
     header {
         width: 100%;
-        grid-column: 1 / 3;
+        justify-content: center;
     }
 
     .shelf {
