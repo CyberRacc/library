@@ -20,7 +20,7 @@ function Book(title, author, pages, cover, read) {
 
 function displayLibrary() {
 
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book, index)  => {
 
         const newBook = document.createElement("div");
         const bookInfo = document.createElement("div");
@@ -68,6 +68,8 @@ function displayLibrary() {
         btnToggleReadStatus.addEventListener("click", e => {
             toggleReadStatus(book, e);
         });
+
+        btnDeleteBook.setAttribute('data-index', index);
         
     });
 }
@@ -150,17 +152,22 @@ function toggleDeleteMode() {
 
     const bookCovers = document.querySelectorAll(".book-cover");
 
-
     if (deleteModeActive === true) {
-
         bookCovers.forEach(bookCover => {
             const btnDeleteBook = document.createElement("button");
+            const index = Book.index;
     
             bookCover.classList.add("book-cover-dim");
+
             btnDeleteBook.innerHTML = `<img src="/assets/icons/delete-book.svg" alt="">`;
             btnDeleteBook.classList.add("btn-del-book");
+            btnDeleteBook.setAttribute('data-index', index);
+
+            btnDeleteBook.addEventListener("click", deleteBook);
+
             bookCover.appendChild(btnDeleteBook);
         });
+        deleteModeActive = !deleteModeActive;
     } else {
         bookCovers.forEach(bookCover => {
             const deleteButton = bookCover.querySelector('.btn-del-book');
@@ -169,13 +176,21 @@ function toggleDeleteMode() {
             }
             bookCover.classList.remove("book-cover-dim");
         });
+        deleteModeActive = !deleteModeActive;
     }
-
-    
 }
 
-function deleteBook() {
-    
+shelf.addEventListener('click', function(e) {
+    if (e.target.matches('.btn-del-book, .btn-del-book img')) { // checks if the clicked element is the delete button or its child image
+        deleteBook(e);
+    }
+});
+
+function deleteBook(e) {
+    const index = e.target.closest('.btn-del-book').getAttribute('data-index');
+    myLibrary.splice(index, 1);
+    deleteModeActive = false;
+    displayLibrary();
 }
 
 addDefaultBooks();
