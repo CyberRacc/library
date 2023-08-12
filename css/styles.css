@@ -81,7 +81,7 @@ header {
     gap: 32px;
     border-radius: 8px;
     width: 100%;
-    padding: 12px 0;
+    padding: 12px;
     margin: 0;
     font-size: 1rem;
 }
@@ -160,6 +160,25 @@ select {
     width: 100%;
     background-color: transparent;
     font-size: 1rem;
+}
+
+.book-cover-dim img {
+    background-color: rgba(0, 0, 0, 0.459);
+}
+
+.btn-del-book {
+    position: relative;
+    bottom: 206px;
+    right: 4px;
+    background-color: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+}
+
+.btn-del-book img {
+    width: 32px;
+    height: 32px;
 }
 
 .div-toggle-read img {
