@@ -170,7 +170,6 @@ function toggleDeleteMode() {
 
             bookCover.appendChild(btnDeleteBook);
         });
-        deleteModeActive = !deleteModeActive;
     } else {
         bookCovers.forEach(bookCover => {
             const deleteButton = bookCover.querySelector('.btn-del-book');
@@ -179,7 +178,6 @@ function toggleDeleteMode() {
             }
             bookCover.classList.remove("book-cover-dim");
         });
-        deleteModeActive = !deleteModeActive;
     }
 }
 
