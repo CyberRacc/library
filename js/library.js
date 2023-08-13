@@ -69,7 +69,7 @@ function displayLibrary() {
 
         if(deleteModeActive) {
             const btnDeleteBook = document.createElement("button");
-            btnDeleteBook.innerHTML = `<img src="/assets/icons/delete-book.svg" alt="">`;
+            btnDeleteBook.innerHTML = `<img src="assets/icons/delete-book.svg" alt="">`;
             btnDeleteBook.classList.add("btn-del-book");
             btnDeleteBook.setAttribute('data-index', index);
             bookCover.appendChild(btnDeleteBook);
