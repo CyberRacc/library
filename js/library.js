@@ -1,4 +1,3 @@
-
 let myLibrary = []; // Array to store new book objects.
 let deleteModeActive = false; // Creates and sets delete mode to false by default.
 
@@ -20,11 +19,9 @@ function Book(title, author, pages, cover, read) {
 
 function displayLibrary() {
 
-    const btnDeleteBook = document.createElement("button");
-
+    shelf.innerHTML = '';
 
     myLibrary.forEach((book, index)  => {
-
         const newBook = document.createElement("div");
         const bookInfo = document.createElement("div");
         const bookCover = document.createElement("div");
@@ -40,22 +37,20 @@ function displayLibrary() {
             bookToggleRead.innerHTML = `<button class="btn-toggle-read"><img src="assets/icons/book-unread.svg" alt=""></button>`
         }
 
-        bookToggleRead.addEventListener('click', function(event) {
-            toggleReadStatus(book, event);
+        bookToggleRead.addEventListener('click', function(e) {
+            toggleReadStatus(book, e);
         });
-        
 
         bookTitle.textContent = book.title;
         bookAuthor.textContent = book.author;
         bookPages.textContent = book.pages + " pages";
         bookRead.textContent = book.read;
-
-        bookCover.innerHTML = `<img src="${book.cover}" alt="">`
+        bookCover.innerHTML = `<img src="${book.cover}" alt="">`;
 
         newBook.classList.add("book");
         bookInfo.classList.add("book-info");
         bookCover.classList.add("book-cover");
-        bookToggleRead.classList.add("div-toggle-read")
+        bookToggleRead.classList.add("div-toggle-read");
 
         newBook.appendChild(bookCover);
         newBook.appendChild(bookInfo);
@@ -72,8 +67,14 @@ function displayLibrary() {
             toggleReadStatus(book, e);
         });
 
-        btnDeleteBook.setAttribute('data-index', index);
-        
+        if(deleteModeActive) {
+            const btnDeleteBook = document.createElement("button");
+            btnDeleteBook.innerHTML = `<img src="/assets/icons/delete-book.svg" alt="">`;
+            btnDeleteBook.classList.add("btn-del-book");
+            btnDeleteBook.setAttribute('data-index', index);
+            bookCover.appendChild(btnDeleteBook);
+            bookCover.classList.add("book-cover-dim")
+        }
     });
 }
 
@@ -137,6 +138,23 @@ function addDefaultBooks() {
 
 function toggleReadStatus(book, e) {
 
+    // `stopPropagation` is a method provided by the event object (in this case, `e`).
+    // When an event is triggered in the DOM (Document Object Model), it can "bubble" up 
+    // or "capture" down through the element hierarchy. This means that if you have an event
+    // listener on a parent element and another on a child element, both can be triggered by
+    // a single event, depending on the phase of event flow.
+
+    // By calling `stopPropagation`, we are preventing the event from continuing its journey.
+    // In other words, we're saying "stop the event right here, don't let any parent or 
+    // ancestor elements know about this event."
+
+    // In the context of this function, `toggleReadStatus` is being called when a book's read
+    // status button is clicked. By using `stopPropagation`, we ensure that no other event 
+    // listeners further up in the DOM tree (e.g., listeners on the book's container or even 
+    // the entire shelf) will be notified of this click event. This is particularly useful 
+    // if we don't want any parent elements to accidentally respond to the click intended 
+    // only for the read status button.
+
     e.stopPropagation();
 
     // Ensure we're targeting the button, even if the inner image was clicked.
@@ -152,47 +170,39 @@ function toggleReadStatus(book, e) {
 }
 
 function toggleDeleteMode() {
-
     const bookCovers = document.querySelectorAll(".book-cover");
-
+    
     if (deleteModeActive === true) {
         bookCovers.forEach(bookCover => {
-            const btnDeleteBook = document.createElement("button");
-            const index = Book.index;
-    
             bookCover.classList.add("book-cover-dim");
-
-            btnDeleteBook.innerHTML = `<img src="/assets/icons/delete-book.svg" alt="">`;
-            btnDeleteBook.classList.add("btn-del-book");
-            btnDeleteBook.setAttribute('data-index', index);
-
-            btnDeleteBook.addEventListener("click", deleteBook);
-
-            bookCover.appendChild(btnDeleteBook);
         });
     } else {
         bookCovers.forEach(bookCover => {
-            const deleteButton = bookCover.querySelector('.btn-del-book');
-            if (deleteButton) {
-                bookCover.removeChild(deleteButton);
-            }
             bookCover.classList.remove("book-cover-dim");
         });
     }
+    
+    // This will handle the display of delete buttons and update the book list based on the delete mode.
+    displayLibrary();
 }
 
+
+
 shelf.addEventListener('click', function(e) {
-    if (e.target.matches('.btn-del-book, .btn-del-book img')) { // checks if the clicked element is the delete button or its child image
+    if (e.target.matches('.btn-del-book, .btn-del-book img')) {
+        // checks if the clicked element is the delete button or its child image
         deleteBook(e);
     }
 });
 
 function deleteBook(e) {
-    const index = e.target.closest('.btn-del-book').getAttribute('data-index');
+    const index = parseInt(e.target.closest('.btn-del-book').getAttribute('data-index'), 10);
     myLibrary.splice(index, 1);
-    deleteModeActive = false;
     displayLibrary();
+    deleteModeActive = false;
+    toggleDeleteMode();
 }
+
 
 addDefaultBooks();
 addBookToLibrary();
