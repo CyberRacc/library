@@ -5,15 +5,17 @@ const shelf = document.querySelector(".shelf");
 const btnDeleteModeToggle = document.querySelector("#btn-del-mode");
 
 // Object constructor that stores information on books that are added.
-function Book(title, author, pages, cover, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.cover = cover
-    this.read = read
+class Book {
+    constructor(title, author, pages, cover, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.cover = cover;
+        this.read = read;
 
-    this.bookInfo = function() {
-        return `${title} by ${author}, ${pages} pages, ${read}.`
+        this.bookInfo = function () {
+            return `${title} by ${author}, ${pages} pages, ${read}.`;
+        };
     }
 }
 
