@@ -5,6 +5,7 @@ const shelf = document.querySelector(".shelf");
 const btnDeleteModeToggle = document.querySelector("#btn-del-mode");
 
 // Object constructor that stores information on books that are added.
+// Was object constructor, now a class, in class literal format.
 class Book {
     constructor(title, author, pages, cover, read) {
         this.title = title;
@@ -19,6 +20,7 @@ class Book {
     }
 }
 
+// Need to refactor the below into classes / class methods
 function displayLibrary() {
 
     shelf.innerHTML = '';
